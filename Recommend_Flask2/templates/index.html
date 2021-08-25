@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Recommend products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1 class="text-center">  Recommend product Ids</h1>
+    <p>This model recommends items for users with dummy ids from <b>0-18203</b> (remember to add generic stuff if
+        user does not exist for now like most viewed e.t.c until you can incorprate stuff like gender into recommendations)
+    </p>
+    <p>
+        The model has two types
+        <ol>
+            <li><b>Model1</b></li>
+            <li><b>Model2</b></li>
+        </ol>
+        Model 1 represnts the model trained on 80% of the data with the cosine metric, and model 2 is the same only
+        it was trained on the whole dataset
+    </p>
+    <form form class="p-3 text-center" action="/" , method="post">
+        <label for="fname">User dummy ID:</label><br>
+        <input type="text" id="dummyID" name="text1" placeholder="enter Id num"><br>
+        <label for="lname">Model:</label><br>
+        <input type="text" id="model_type" name="text2" placeholder="enter model type"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if bought %}
+    <p class="text-center"><b> This user bought: </b> {{bought}}</p>
+    {% endif %}
+    {% if prediction %}
+    <p class="text-center"><b> Recommended ids are: </b>  {{prediction}}</p>
+    {% endif %}
+    {% if names %}
+    <p class="text-center"><b> Recommended ids names are: </b>  {{names}}</p>
+    {% endif %}
+
+    <p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </p>
+</body>
+ 
+</html>
